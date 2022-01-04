@@ -72,9 +72,11 @@
 <script>
   window.onload = function() {
     // Build a system
-    apiUrl = window.location.protocol + "//" + window.location.host + "/validator/openapi.json";
+    baseUrl = window.location.protocol + "//" + window.location.host;
+    valUrl = baseUrl + "/validator";
+    apiUrl = valUrl + "/openapi.json";
     const ui = SwaggerUIBundle({
-      oauth2RedirectUrl:  window.location.protocol + '//' + window.location.host + '/oauth2-redirect.html',
+      oauth2RedirectUrl: baseUrl + '/oauth2-redirect.html',
       url: apiUrl,
       dom_id: '#swagger-ui',
       presets: [
@@ -85,7 +87,8 @@
         SwaggerUIBundle.plugins.DownloadUrl
       ],
       layout: "StandaloneLayout",
-      queryConfigEnabled: true
+      queryConfigEnabled: true,
+      validatorUrl: valUrl,
     })
 
     window.ui = ui
